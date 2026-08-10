@@ -1,0 +1,37 @@
+[project]
+name = "axonbead-ml"
+version = "0.1.0"
+description = "Deep-learning bead detector extending the published AxonBead pipeline"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "Ezra Guerrero González" }]
+license = { text = "MIT" }
+
+# NOTE: dependencies are added incrementally, week by week, rather than all
+# up front. Week 1 only needs data handling + notebooks. MLflow, FastAPI,
+# Docker-related packages, and Streamlit get added when those phases start —
+# this keeps the environment lean and makes it obvious, from the git history
+# of this file, which dependency was needed for which milestone.
+
+dependencies = [
+    "axonbead @ git+https://github.com/EzraGuerrero/AxonBead.git",
+    "numpy",
+    "pandas",
+    "scikit-image",
+    "matplotlib",
+    "pillow",
+]
+
+[project.optional-dependencies]
+dev = [
+    "jupyter",
+    "pytest",
+    "ruff",       # linter + formatter
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]

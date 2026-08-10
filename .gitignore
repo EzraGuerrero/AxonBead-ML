@@ -1,0 +1,51 @@
+# ── Python ──────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# ── Virtual environments ────────────────────────────────
+.venv/
+venv/
+env/
+
+# ── Jupyter ─────────────────────────────────────────────
+.ipynb_checkpoints/
+
+# ── Environment variables / secrets ─────────────────────
+.env
+*.pem
+*credentials*
+
+# ── DVC ─────────────────────────────────────────────────
+# DVC auto-manages entries for tracked data (added via `dvc add`).
+# This just ignores its local cache directory.
+/.dvc/cache
+/.dvc/tmp
+
+# ── MLflow ──────────────────────────────────────────────
+mlruns/
+mlartifacts/
+
+# ── Model artifacts / large binaries ────────────────────
+*.pt
+*.pth
+*.ckpt
+*.h5
+
+# ── Docker ──────────────────────────────────────────────
+*.log
+
+# ── OS / editor ─────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# ── Test / coverage ──────────────────────────────────────
+.pytest_cache/
+.coverage
+htmlcov/

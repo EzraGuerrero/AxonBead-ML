@@ -11,3 +11,8 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `docs/data_card.md` template (Datasheets for Datasets convention).
 - `pyproject.toml` with Week 1 dependencies; AxonBead installed as a git dependency.
 - `.gitignore` covering Python, DVC, MLflow, Docker, and secrets.
+- DVC initialized
+
+### Fixed
+
+- Fixed missing empty-folder tracking

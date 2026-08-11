@@ -15,20 +15,20 @@ were collected, and what their limitations are. Fill this in as data collection 
 
 - **Origin:** iPSC-derived neurons exposed to varying glutamate concentrations (see AxonBead
   publication for full experimental protocol).
-- **Imaging equipment / settings:** _TBD._
-- **Collection date(s):** _TBD._
+- **Imaging equipment / settings:** SMI-31 (488 nm) neurofilament channel, 20x magnification.
+- **Collection date(s):** Multiple experimental rounds/imaging sessions — see composition table.
 
 ## 3. Composition
 
 | Condition | # images | Notes |
 |---|---|---|
-| Control (no glutamate) | _TBD_ | Needed as negative examples — teaches the model what "not a bead" looks like |
-| Low-dose glutamate | _TBD_ | |
-| High-dose glutamate | _TBD_ | |
+| Control (non-treated / control) | 20 | Negative examples — teaches the model what "not a bead" looks like |
+| Low_beads (low-dose glutamate) | 20 | |
+| High_beads (high-dose glutamate) | 20 | |
 
-- **Batches/imaging sessions represented:** _TBD — note if data spans more than one session, which
-  matters for how well the model generalizes._
-- **Class balance (once annotated):** _TBD — record the ratio of bead : non-bead candidate regions._
+- **Batches/imaging sessions represented:** Multiple experimental rounds and imaging sessions
+  (encoded in filename via experiment ID, e.g. NI240119).
+- **Class balance (once annotated):** _TBD — filled in after Week 2 annotation._
 
 ## 4. Collection process
 
@@ -54,4 +54,6 @@ quality-control steps (e.g., second-pass review, inter-rater agreement)._
 
 | Version | Date | Change |
 |---|---|---|
-| 0.1 | _TBD_ | Initial raw data collected |
+| 0.1 | 2026-08-11 | Initial raw data collected: 60 images total (20 control / 20 low_beads / 20 high_beads),
+ spanning experiments NI231117 and NI240119 (first 5 images of NT, HCl as control, Pio, LiCl, CHIR as low_beads, 
+Glut and DMSO as high_beads) |

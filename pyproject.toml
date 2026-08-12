@@ -29,6 +29,12 @@ dev = [
     "ruff",       # linter + formatter
 ]
 
+annotation = [
+    "napari[all]",
+    "bioio",
+    "bioio-czi",
+]
+
 [build-system]
 requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"

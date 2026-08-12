@@ -12,7 +12,10 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `pyproject.toml` with Week 1 dependencies; AxonBead installed as a git dependency.
 - `.gitignore` covering Python, DVC, MLflow, Docker, and secrets.
 - DVC initialized
+- Built annotation tool (annotate.py)
+- Annotated first 60 pictures (data/raw)
 
 ### Fixed
 
 - Fixed missing empty-folder tracking
+- switched aicsimageio → bioio to debug dependency issue (aicsimageio is discontinued)

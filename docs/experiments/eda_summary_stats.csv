@@ -1,0 +1,4 @@
+condition,n_images,total_beads,mean_beads_per_image,std_beads_per_image
+control,20,68,3.4,2.5
+high_beads,20,448,22.4,6.5
+low_beads,20,250,12.5,3.9

@@ -20,15 +20,15 @@ were collected, and what their limitations are. Fill this in as data collection 
 
 ## 3. Composition
 
-| Condition | # images | Notes |
-|---|---|---|
-| Control (non-treated / control) | 20 | Negative examples — teaches the model what "not a bead" looks like |
-| Low_beads (low-dose glutamate) | 20 | |
-| High_beads (high-dose glutamate) | 20 | |
+| Condition | n_images | total_beads | mean_beads_per_image | std_beads_per_image |
+|---|---|---|---|---|
+| Control | 20 | 68 | 3.4 | 2.5 |
+| High_beads | 20 | 448 | 22.4 | 6.5 |
+| Low_beads | 20 | 250 | 12.5 | 3.9 |
 
 - **Batches/imaging sessions represented:** Multiple experimental rounds and imaging sessions
   (encoded in filename via experiment ID, e.g. NI240119).
-- **Class balance (once annotated):** _TBD — filled in after Week 2 annotation._
+- **Class balance (once annotated):** control < low_beads < high_beads
 
 ## 4. Collection process
 
@@ -47,8 +47,8 @@ were collected, and what their limitations are. Fill this in as data collection 
 
 ## 7. Annotation protocol
 
-_To be completed in Week 2 — will describe how bead locations were labeled, by whom, and any
-quality-control steps (e.g., second-pass review, inter-rater agreement)._
+True beads were labelled by Dr. Ezra Guerrero González, considering an user-determined size threshold, intensity value,
+and whether they appear connected to neurites on both sides.
 
 ## 8. Version history
 

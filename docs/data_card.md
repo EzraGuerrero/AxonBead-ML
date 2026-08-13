@@ -29,6 +29,7 @@ were collected, and what their limitations are. Fill this in as data collection 
 - **Batches/imaging sessions represented:** Multiple experimental rounds and imaging sessions
   (encoded in filename via experiment ID, e.g. NI240119).
 - **Class balance (once annotated):** control < low_beads < high_beads
+- **Outliers:** NI240119_SMI31-488_20x_HCl_03.czi is a known outlier in the "control" condition. Annotation is correct
 
 ## 4. Collection process
 

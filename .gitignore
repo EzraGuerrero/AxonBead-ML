@@ -29,6 +29,7 @@ env/
 # ── MLflow ──────────────────────────────────────────────
 mlruns/
 mlartifacts/
+mlflow.db
 
 # ── Model artifacts / large binaries ────────────────────
 *.pt

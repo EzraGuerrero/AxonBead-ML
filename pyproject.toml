@@ -20,6 +20,8 @@ dependencies = [
     "scikit-image",
     "matplotlib",
     "pillow",
+    "scipy",
+    "mlflow",
 ]
 
 [project.optional-dependencies]

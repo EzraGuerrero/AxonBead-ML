@@ -7,11 +7,9 @@ requires-python = ">=3.10"
 authors = [{ name = "Ezra Guerrero González" }]
 license = { text = "MIT" }
 
-# NOTE: dependencies are added incrementally, week by week, rather than all
-# up front. Week 1 only needs data handling + notebooks. MLflow, FastAPI,
-# Docker-related packages, and Streamlit get added when those phases start —
-# this keeps the environment lean and makes it obvious, from the git history
-# of this file, which dependency was needed for which milestone.
+# NOTE: dependencies are added incrementally,this keeps the environment
+# lean and makes it obvious, from the git history of this file, which
+# dependency was needed for which milestone.
 
 dependencies = [
     "axonbead @ git+https://github.com/EzraGuerrero/AxonBead.git",
@@ -22,6 +20,7 @@ dependencies = [
     "pillow",
     "scipy",
     "mlflow",
+    "torch",
 ]
 
 [project.optional-dependencies]

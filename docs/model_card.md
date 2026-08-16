@@ -1,10 +1,10 @@
 # Model Card — AxonBead-ML Bead Detector
 
 ## 1. Model details
-- **Name:** Classical baseline (manual threshold + shape filtering)
-- **Version:** v0.1
-- **Date:** 2026-08-XX
-- **Type:** Rule-based / classical image processing (not a trained model)
+- **Name:** U-Net bead detector (v0.2)
+- **Version:** v0.2
+- **Date:** 2026-08-16
+- **Type:** Deep learning (U-Net, PyTorch) — supersedes the v0.1 classical baseline
 - **Owner:** Ezra Guerrero González
 
 ## 2. Intended use
@@ -13,25 +13,35 @@
 - **Out of scope:** Not validated for other markers, magnifications, or imaging modalities.
 
 ## 3. Architecture / how it works
-Manual intensity threshold (220, 8-bit) isolates high-intensity bead structures against
-neurite background, followed by connected-component labeling and filtering by area
-(5–200 px) and circularity (≥0.6). See `src/axonbead_ml/models/baseline.py`.
+**Current model (v0.2):** Small U-Net (16 base channels, 3 downsampling levels) trained to
+predict a Gaussian heatmap of bead locations from the raw SMI-31 image. Predicted heatmap
+peaks (threshold 0.25, min distance 5px) are converted to point coordinates and matched
+against ground truth via Hungarian assignment. See `src/axonbead_ml/models/unet.py`.
+
+**Baseline (v0.1, still in repo for comparison):** Manual intensity threshold (220, 8-bit) +
+connected-component shape filtering. See `src/axonbead_ml/models/baseline.py`.
 
 ## 4. Training data
 Not applicable (rule-based, not trained). Evaluated against the annotated dataset described
 in `docs/data_card.md`.
 
 ## 5. Evaluation data & metrics
-- **Evaluated on:** All 60 annotated images (20 control / 20 low_beads / 20 high_beads).
-- **Metric:** Precision/recall/F1 via optimal point-matching (Hungarian assignment,
-  max distance 15 px) — see `src/axonbead_ml/training/evaluate.py`.
-- **Results:** Overall precision 0.237, recall 0.607, F1 0.341.
-  By condition: control F1 0.165, low_beads F1 0.316, high_beads F1 0.455.
+Evaluated on the same held-out test set (9 images, stratified by condition), never used for
+training or threshold tuning.
+
+| Model | Precision | Recall | F1 |
+|---|---|---|---|
+| v0.1 Classical baseline | 0.237 | 0.607 | 0.341 |
+| v0.2 U-Net | 0.639 | 0.617 | 0.628 |
 
 ## 6. Limitations
-- Low precision — many false positives, likely background/neurite structures crossing the
-  intensity threshold without being filtered out by shape alone.
-- Not tested on images from other experiments, magnifications, or staining protocols.
+- Recall on low_beads condition is weaker than other conditions (~0.38 at initial evaluation) —
+  likely due to MSE loss under-penalizing missed faint/dim beads; a foreground-weighted loss is
+  a planned future improvement, not yet implemented.
+- Trained on only 14 images — small dataset increases variance in reported metrics.
+- Checkpoint files are overwritten by filename on each training run rather than versioned by
+  epoch count; if retraining, checkpoint naming should be fixed first to avoid ambiguity about
+  which weights are loaded.
 
 ## 7. Ethical considerations
 Not intended for clinical or diagnostic use; research tool only.
@@ -39,4 +49,5 @@ Not intended for clinical or diagnostic use; research tool only.
 ## 8. Version history
 | Version | Date | Model | F1 (overall) | Notes |
 |---|---|---|---|---|
-| v0.1 | 2026-08-XX | Classical baseline | 0.341 | First recorded baseline via MLflow |
+| v0.1 | 2026-08-14 | Classical baseline | 0.341 | First recorded baseline via MLflow |
+| v0.2 | 2026-08-16 | U-Net (60 epochs) | 0.628 | Beats baseline; low_beads recall gap noted as future work |

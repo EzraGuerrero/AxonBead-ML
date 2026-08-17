@@ -21,6 +21,9 @@ dependencies = [
     "scipy",
     "mlflow",
     "torch",
+    "fastapi",
+    "uvicorn",
+    "python-multipart",
 ]
 
 [project.optional-dependencies]

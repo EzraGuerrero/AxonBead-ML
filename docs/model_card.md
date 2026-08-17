@@ -18,6 +18,10 @@ predict a Gaussian heatmap of bead locations from the raw SMI-31 image. Predicte
 peaks (threshold 0.25, min distance 5px) are converted to point coordinates and matched
 against ground truth via Hungarian assignment. See `src/axonbead_ml/models/unet.py`.
 
+- Note: model served via a FastAPI + Docker API (/detect, /examples, /health), with the manual
+sigma/peak_threshold/image_size values used at inference matching the validated notebook config
+exactly (via the shared inference.py).
+
 **Baseline (v0.1, still in repo for comparison):** Manual intensity threshold (220, 8-bit) +
 connected-component shape filtering. See `src/axonbead_ml/models/baseline.py`.
 

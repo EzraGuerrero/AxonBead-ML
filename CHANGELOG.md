@@ -3,6 +3,36 @@
 All notable changes to this project are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## Step 6 - FastAPI serving endpoint + Docker
+
+### Added
+- `src/axonbead_ml/inference.py` — single shared preprocess → predict → peak-find pipeline,
+  used by both the API and (going forward) any future evaluation code, so served predictions
+  can't silently diverge from validated notebook results.
+- `src/axonbead_ml/api/image_loading.py` — loads `.czi`, `.tif`/`.tiff`, `.png`, `.jpg` for
+  inference; non-`.czi` formats are assumed single-channel grayscale (auto-converted from RGB
+  if needed, since they carry no channel metadata).
+- `src/axonbead_ml/api/main.py` — FastAPI app with `GET /health`, `GET /examples`, and
+  `POST /detect` (accepts an uploaded image or a bundled example by name).
+- `scripts/export_sample_images.py` — one-time script exporting one representative image per
+  condition (control/low_beads/high_beads) as PNGs bundled into the API for `/examples`.
+- `docker/Dockerfile`, `.dockerignore` — containerizes the API (Python 3.11-slim base, model
+  checkpoint baked into the image, `uvicorn` as the entrypoint).
+
+### Infrastructure notes
+- Docker Desktop on Windows repeatedly failed (WSL2 backend errors, a reinstall attempt that
+  crashed the machine and required a backup restore). Resolved by installing Docker Engine
+  directly inside a Debian VM instead of using Docker Desktop.
+- First VM build ran out of disk space mid-build; resolved by increasing the VM's allocated
+  disk — Docker's layer caching meant the rebuild reused already-completed layers rather than
+  starting over.
+
+### Verified
+- `/detect` tested against all three bundled examples; bead counts (control: 3, low_beads: 10,
+  high_beads: 18) are consistent with the EDA's per-condition means, both run locally via
+  `uvicorn` and inside the built Docker container.
+---
+
 ## Step 4–5 — U-Net bead detector
 
 ### Added

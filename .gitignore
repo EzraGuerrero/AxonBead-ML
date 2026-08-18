@@ -36,6 +36,7 @@ mlflow.db
 *.pth
 *.ckpt
 *.h5
+!checkpoints/unet_best.pt
 
 # ── Docker ──────────────────────────────────────────────
 *.log

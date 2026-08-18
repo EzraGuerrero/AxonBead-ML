@@ -16,7 +16,7 @@ import streamlit as st
 from PIL import Image
 
 # TODO: replace with your actual Render URL once confirmed
-API_BASE_URL = "https://axonbead-ml.onrender.com/docs"
+API_BASE_URL = "https://axonbead-ml.onrender.com"
 
 st.set_page_config(page_title="AxonBead-ML", layout="wide")
 

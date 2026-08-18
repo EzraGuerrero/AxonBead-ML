@@ -8,7 +8,8 @@ images of neurons.
 
 ## Try me
 
-**Try it live:** https://axonbead-ml.onrender.com/docs
+**Live App:** https://axonbead-ml.streamlit.app/
+**Live API:** https://axonbead-ml.onrender.com/docs
 
 ## Why this project exists
 

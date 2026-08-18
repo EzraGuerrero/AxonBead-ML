@@ -3,6 +3,35 @@
 All notable changes to this project are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## Step 7 - Streamlit demo app + public deployment
+
+### Added
+- `streamlit_app/app.py` — public-facing demo: example image gallery (preview all three
+  conditions before choosing), file upload (.czi/.tif/.png/.jpg), detection overlay
+  (predicted bead locations drawn on the image), bead-count interpretation bands, model
+  statistics sidebar, and a documented "next step" note on neurofilament-area normalization.
+- `streamlit_app/requirements.txt` — deliberately lightweight (streamlit, requests, pillow,
+  matplotlib, numpy only) — the app is a thin client and needs neither torch nor bioio,
+  since all model inference happens via calls to the deployed API.
+- `GET /examples/{name}/image` endpoint added to the FastAPI app, so Streamlit can display
+  and overlay bundled example images without duplicating them locally.
+
+### Fix
+- Resolved an out-of-memory (OOM) crash on Render's free tier (512MB limit), which caused
+  `/detect` to fail for `control` and `high_beads` (worked intermittently for `low_beads`
+  only). Root cause: `pip install torch` pulls the default PyPI wheel, which bundles CUDA
+  libraries loaded into memory at import time even on a CPU-only container. Fixed by
+  installing the CPU-only torch build explicitly (`--index-url
+  https://download.pytorch.org/whl/cpu`) and setting `torch.set_num_threads(1)`.
+
+### Deployed
+- API live on Render: [https://axonbead-ml.onrender.com/docs](https://axonbead-ml.onrender.com/docs)
+- Streamlit app live on Streamlit Community Cloud: [https://axonbead-ml.streamlit.app/](https://axonbead-ml.streamlit.app/)
+
+### Documentation
+- `README.md` updated with both live URLs.
+---
+
 ## Step 6 - FastAPI serving endpoint + Docker
 
 ### Added

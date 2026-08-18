@@ -39,8 +39,8 @@ with st.sidebar:
 
 | Metric | Classical baseline | U-Net |
 |---|---|---|
-| Precision | 0.237 | — |
-| Recall | 0.607 | — |
+| Precision | 0.237 | 0.639 |
+| Recall | 0.607 | 0.617 |
 | F1 | 0.341 | **0.628** |
 
 **Known limitation:** recall on low-bead-density images is the model's current weak point

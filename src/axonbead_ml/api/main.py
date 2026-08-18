@@ -17,6 +17,7 @@ from typing import List, Optional
 
 import torch
 from fastapi import FastAPI, File, HTTPException, UploadFile
+from fastapi.responses import FileResponse
 from pydantic import BaseModel
 
 from axonbead_ml.api.image_loading import load_image_for_inference
@@ -70,6 +71,18 @@ def health() -> dict:
 def list_examples() -> List[ExampleInfo]:
     """List the bundled sample images available for /detect, for users without their own file."""
     return [ExampleInfo(name=name, description=desc) for name, desc in EXAMPLES.items()]
+
+
+@app.get("/examples/{name}/image")
+def get_example_image(name: str) -> FileResponse:
+    """Return the raw PNG for one bundled example, so a client (e.g. Streamlit) can
+    display it and draw a detection overlay, without needing its own copy of the file."""
+    if name not in EXAMPLES:
+        raise HTTPException(404, f"Unknown example '{name}'. Options: {list(EXAMPLES)}")
+    image_path = EXAMPLES_DIR / f"{name}.png"
+    if not image_path.exists():
+        raise HTTPException(500, f"Example image file missing on server: {image_path}")
+    return FileResponse(image_path, media_type="image/png")
 
 
 @app.post("/detect", response_model=DetectionResponse)

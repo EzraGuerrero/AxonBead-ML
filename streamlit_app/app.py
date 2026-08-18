@@ -132,7 +132,7 @@ if mode == "Use a bundled example":
     for col, example in zip(cols, examples):
         with col:
             img_bytes = fetch_example_image(example["name"])
-            st.image(img_bytes, caption=example["name"], use_container_width=True)
+            st.image(img_bytes, caption=example["name"], width="stretch")
             st.caption(example["description"])
 
     selected_example = st.selectbox("Select example to analyze", [e["name"] for e in examples])

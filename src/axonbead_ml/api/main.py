@@ -49,6 +49,8 @@ model = SmallUNet(in_channels=1, out_channels=1, base_channels=16).to(device)
 model.load_state_dict(torch.load(CHECKPOINT_PATH, map_location=device))
 model.eval()
 
+# Limit PyTorch's thread count to reduce peak memory on small CPU instances
+torch.set_num_threads(1)
 
 class DetectionResponse(BaseModel):
     source: str

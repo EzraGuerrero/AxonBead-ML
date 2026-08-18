@@ -24,6 +24,13 @@ COPY checkpoints/unet_best.pt checkpoints/unet_best.pt
 # Install the project. Plain "pip install ." (not "-e .[dev]") — this is a
 # production image, so no editable install and no dev-only tools
 # (jupyter, pytest, napari) that the API doesn't need.
+
+# Install CPU-only torch explicitly first — the default PyPI wheel bundles
+# CUDA libraries that get loaded into memory even though this container has
+# no GPU, which is a common cause of OOM on small deployments.
+
+RUN pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu
+
 RUN pip install --no-cache-dir .
 
 EXPOSE 8000

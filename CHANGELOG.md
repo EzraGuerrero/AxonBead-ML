@@ -18,6 +18,9 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   condition (control/low_beads/high_beads) as PNGs bundled into the API for `/examples`.
 - `docker/Dockerfile`, `.dockerignore` — containerizes the API (Python 3.11-slim base, model
   checkpoint baked into the image, `uvicorn` as the entrypoint).
+- Render deployment — created Render web service linked to Github repo. Render builds image
+  from GitHub repo, so `checkpoints/unet_best.pt` needed to be added by modifying .gitignore
+  `!checkpoints/unet_best.pt`
 
 ### Infrastructure notes
 - Docker Desktop on Windows repeatedly failed (WSL2 backend errors, a reinstall attempt that

@@ -4,7 +4,11 @@ Deep-learning extension of [AxonBead](https://github.com/EzraGuerrero/AxonBead),
 analysis tool that quantifies axonal beads (a biomarker of axonal damage) in confocal microscopy
 images of neurons.
 
-**Status:** 🚧 Week 1 — repo scaffolding, data collection in progress.
+**Status:** 🚧 Step 7 — Streamlit demo, public launch.
+
+## Try me
+
+**Try it live:** https://axonbead-ml.onrender.com/docs
 
 ## Why this project exists
 
@@ -57,20 +61,15 @@ Python 3.10+, PyTorch, scikit-image, DVC (data versioning), MLflow (experiment t
 
 ## Roadmap
 
-| Week | Milestone |
+| Steps | Milestone |
 |---|---|
 | 1 | Repo scaffolding, data collection |
 | 2 | Annotation tool, annotation begins |
 | 3 | Annotation complete, baseline model + MLflow tracking |
 | 4–5 | U-Net bead detector trained |
-| 6 | Validation against classical AxonBead pipeline |
-| 7 | FastAPI + Docker |
-| 8 | Streamlit demo, public launch |
-| 9–13 (stretch) | Neurite segmentation model |
-
-## Setup
-
-_Coming in Week 1 — see below for the commands to reproduce this environment._
+| 6 | FastAPI + Docker |
+| 7 | Streamlit demo, public launch |
+| 8–12 (stretch) | Neurite segmentation model |
 
 ## License
 
